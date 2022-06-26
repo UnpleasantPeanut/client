@@ -2,7 +2,7 @@ import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
 import build from "../scripts/build.ts";
 
 await build({
-    SERVER_URL: Deno.env.get('SERVER_URL') ?? 'ws://127.0.0.1:3012'
+  SERVER_URL: Deno.env.get("SERVER_URL") ?? "ws://127.0.0.1:3012",
 });
 
 const app = new Application();
