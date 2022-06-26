@@ -23,9 +23,14 @@ const loadCanvas = (id: string) => {
   resize();
 };
 
-const getContext = (id: string) => {
+export const getContext = (id: string) => {
   loadCanvas(id);
   return _ctx;
 };
 
-export default getContext;
+const getCanvas = (id: string) => {
+  loadCanvas(id);
+  return _canvas;
+}
+
+export default getCanvas;
