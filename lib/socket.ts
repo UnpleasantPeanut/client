@@ -7,7 +7,7 @@ const loadSocketConnection = (url: string) => {
   }
   _socket = new WebSocket(url);
 
-  _socket.addEventListener("open", (event) => {
+  _socket.addEventListener("open", () => {
     _socket.send("Hello Server!");
   });
 

@@ -5,7 +5,7 @@ let running = false;
 const loop = () => {
   _update();
   _draw();
-  window.requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
 };
 
 interface GameParams {
@@ -21,7 +21,7 @@ const game = ({ update, draw }: GameParams) => {
   running = true;
   _update = update;
   _draw = draw;
-  window.requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
 };
 
 export default game;

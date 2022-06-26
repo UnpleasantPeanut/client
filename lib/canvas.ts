@@ -2,8 +2,8 @@ let _canvas: HTMLCanvasElement;
 let _ctx: CanvasRenderingContext2D;
 
 const resize = () => {
-  _canvas.width = window.innerWidth;
-  _canvas.height = window.innerHeight;
+  _canvas.width = innerWidth;
+  _canvas.height = innerHeight;
 };
 
 const loadCanvas = (id: string) => {
@@ -19,7 +19,7 @@ const loadCanvas = (id: string) => {
   if (!_ctx) {
     throw new Error("Could not load Context 2D");
   }
-  window.addEventListener("resize", resize, false);
+  addEventListener("resize", resize, false);
   resize();
 };
 
