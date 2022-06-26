@@ -1,5 +1,6 @@
 import getContext from "./canvas.ts";
 import game from "./game.ts";
+import Keybinds from "./keybinds.ts";
 import loadSocketConnection from "./socket.ts";
 
 const ctx = getContext("canvas");
@@ -14,6 +15,10 @@ if (!SERVER_URL) {
 }
 
 loadSocketConnection(SERVER_URL);
+
+const keybinds = new Keybinds();
+
+keybinds.onChange(console.log);
 
 const update = () => {
   counter += 1;

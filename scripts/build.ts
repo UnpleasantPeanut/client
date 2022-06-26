@@ -1,23 +1,23 @@
-interface EnvBuildParams {
-  SERVER_URL: string;
+interface BuildParams {
+  input: string;
+  output: string;
+  env: Record<string, string>;
 }
 
-const OUTPUT = Deno.cwd() + "/public/javascript/build/upc-bundle.js";
-
-const build = async (envBuildParams: EnvBuildParams) => {
+const build = async ({ input, output, env }: BuildParams) => {
   const process = Deno.run({
     cmd: [
       "deno",
       "bundle",
-      Deno.cwd() + "/lib/mod.ts",
-      OUTPUT,
+      input,
+      output,
     ],
   });
   await process.status();
 
-  const bundle = await Deno.readTextFile(OUTPUT);
+  const bundle = await Deno.readTextFile(output);
 
-  const parsedBundle = Object.entries(envBuildParams).reduce(
+  const parsedBundle = Object.entries(env).reduce(
     (acc, [key, value]) => {
       const searchString = `Deno\\.env\\.get\\("${key}"\\)`;
       const regExp = new RegExp(searchString, "g");
@@ -27,7 +27,7 @@ const build = async (envBuildParams: EnvBuildParams) => {
     bundle,
   );
 
-  await Deno.writeTextFile(OUTPUT, parsedBundle);
+  await Deno.writeTextFile(output, parsedBundle);
 };
 
 export default build;
